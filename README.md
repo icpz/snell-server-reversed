@@ -36,7 +36,7 @@ command:
 client_id length: zero currently (maybe reserved for multi-user)
 ```
 
-* 本repo给出的demo没有实现PING和obfs功能
+* 本repo给出的demo没有实现obfs功能
 
 * host总是字符串格式的，即使是ip地址
 
@@ -45,7 +45,7 @@ client_id length: zero currently (maybe reserved for multi-user)
 ### S to C
 
 ```
-[1-byte ???][application data...]
+[1-byte 0x00][application data...]
 ```
 
 目前实现server回复client的流总是有1 byte的0x00，尚不明确含义

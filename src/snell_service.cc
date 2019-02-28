@@ -114,11 +114,10 @@ private:
                 }
 
                 if (header[1] == 0x00) { // ping COMMAND
-                    /* not implemented */
-                    LOG(WARNING) << "unimplemented command: " << (uint32_t)header[1];
+                    DoSendPongToClient();
                     return;
-                } else if (header[1] == 0x01) {
-
+                } else if (header[1] == 0x01) { // connect COMMAND
+                    /* handled in place */
                 } else {
                     LOG(WARNING) << "unsupported command: " << (uint32_t)header[1];
                     /* unsupported command */
@@ -241,6 +240,22 @@ __snell_read_head_need_more:
                 std::placeholders::_2,
                 std::placeholders::_3
             )
+        );
+    }
+
+    void DoSendPongToClient() {
+        auto self{shared_from_this()};
+        uint8_t pong[1] = { 0x00 };
+        int ret = encrypt_ctx_->EncryptSome(client_.buffer, pong, sizeof pong);
+        if (ret) {
+            LOG(WARNING) << "encrypt error";
+            return;
+        }
+        boost::asio::async_write(
+            client_.socket, boost::asio::buffer(client_.buffer),
+            [self, this](bsys::error_code ec, size_t length) {
+                return;
+            }
         );
     }
 
