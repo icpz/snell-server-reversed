@@ -4,7 +4,7 @@
 
 # Overview
 
-## 加密模式
+## Encryption Schema
 
 Schema 同 shadowsocks aead 模式，分组密码选用了 chacha20-poly1305-ietf，详见[Aead Schema](http://shadowsocks.org/en/spec/AEAD-Ciphers.html)
 
@@ -15,7 +15,7 @@ crypto_pwhash(__out key, 32, psk, psk_len, salt, 3ULL, 0x2000ULL, crypto_pwhash_
 ```
 参数意义详见[libsodium documentation](https://libsodium.gitbook.io/doc/password_hashing/the_argon2i_function#key-derivation)
 
-## 上层私有协议
+## The Snell Protocol
 
 ### C to S
 
@@ -50,7 +50,7 @@ client_id length: zero currently (maybe reserved for multi-user)
 
 目前实现server回复client的流总是有1 byte的0x00，尚不明确含义
 
-## 混淆算法
+## Obfuscating Algorithm
 
 目前的http就是[simple-obfs](https://github.com/shadowsocks/simple-obfs)的http mode，不想实现demo了，但可作如下验证
 
@@ -71,7 +71,7 @@ psk = zzz
 
 现在surge中添加代理```test_snell = snell, [SERVER ADDRESS], 8787, psk=zzz, obfs=http```可成功访问网络
 
-# Build Source
+# Build Demo
 
 ## macOS
 
