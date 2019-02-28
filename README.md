@@ -52,7 +52,24 @@ client_id length: zero currently (maybe reserved for multi-user)
 
 ## 混淆算法
 
-暂未逆向
+目前的http就是[simple-obfs](https://github.com/shadowsocks/simple-obfs)的http mode，不想实现demo了，但可作如下验证
+
+```
+./snell-server -c ./snell-server.conf &
+
+obfs-server -s 0.0.0.0 -p 8787 -r 127.0.0.1:9898 --obfs=http
+```
+
+假定snell-server.conf内容如下：
+
+```
+$ cat ./snell-server.conf
+[snell-server]
+listen = 0.0.0.0:9898
+psk = zzz
+```
+
+现在surge中添加代理```test_snell = snell, [SERVER ADDRESS], 8787, psk=zzz, obfs=http```可成功访问网络
 
 # Build Source
 
