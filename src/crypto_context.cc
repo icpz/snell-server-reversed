@@ -1,6 +1,9 @@
 
 #include <sodium.h>
 #include <glog/logging.h>
+#include <arpa/inet.h>
+#include <assert.h>
+
 #include "crypto_context.hxx"
 
 const size_t CHUNK_MAX_SIZE = 0x3FFFU;
