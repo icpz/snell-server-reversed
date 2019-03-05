@@ -52,6 +52,8 @@ client_id length: zero currently (maybe reserved for multi-user)
 
 ## Obfuscating Algorithm
 
+### HTTP
+
 目前的http就是[simple-obfs](https://github.com/shadowsocks/simple-obfs)的http mode，不想实现demo了，但可作如下验证
 
 ```
@@ -70,6 +72,10 @@ psk = zzz
 ```
 
 现在surge中添加代理```test_snell = snell, [SERVER ADDRESS], 8787, psk=zzz, obfs=http```可成功访问网络
+
+### TLS
+
+TLS也就是[simple-obfs](https://github.com/shadowsocks/simple-obfs)的tls mode，验证方式同上
 
 # Build Demo
 
