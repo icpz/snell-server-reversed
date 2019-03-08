@@ -45,10 +45,24 @@ client_id length: zero currently (maybe reserved for multi-user)
 ### S to C
 
 ```
-[1-byte 0x00][application data...]
+[1-byte command][content...]
 ```
 
-目前实现server回复client的流总是有1 byte的0x00，尚不明确含义
+其中
+
+```
+command:
+    0x00:   TUNNEL
+    0x02:   ERROR
+```
+
+当command=0x00时，content即是应用层数据，正常建立隧道将远端数据原封不动传递
+
+当command=0x02时，content具有如下模式
+
+```
+[1-byte error code][1-byte error msg length][variable-length error message]
+```
 
 ## Obfuscating Algorithm
 
