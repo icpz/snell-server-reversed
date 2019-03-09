@@ -1,6 +1,6 @@
 # Snell Server
 
-对snell协议版本1.0的初步逆向
+对snell协议版本1.1的初步逆向
 
 # Overview
 
