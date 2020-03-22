@@ -100,3 +100,7 @@ S->C :                   [0x00]    [app data]          [app data...][]          
 
 同 [v1](README.v1.md)
 
+# Contact
+
+欢迎大家交流讨论，如果有问题欢迎在 issue 区提出，或 Email [cc@icpz.dev](mailto:cc@icpz.dev)。
+
