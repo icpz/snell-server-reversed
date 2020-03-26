@@ -1,6 +1,6 @@
 # Snell Server
 
-对 snell 协议版本 2.0b1 的初步逆向，1.1 版本详见 [v1](README.v1.md)
+对 snell 协议版本 2.0b7 的初步逆向，1.1 版本详见 [v1](README.v1.md)
 
 **注意，目前（2020年3月23日） snell 2.0 仍然在快速迭代中且本人较忙，因此本项目将暂缓逆向进程，等官方发布 v2.0 release 版本后再找时间逆向。谢谢大家。**
 
@@ -63,7 +63,7 @@ client_id: currently a 36 characters uuid string in official implementation, whi
 ### S to C
 
 ```
-[1-byte command][content]
+[1-byte command][content 0][1-byte command][content 1]....
 ```
 
 其中
@@ -77,7 +77,7 @@ command:
 当 command=0x00 时，表明 snell 配置正常，服务端可以进行转发，content 具有如下模式
 
 ```
-[sub-connection-reply 0][sub-connection-reply 1]....
+[sub-connection-reply]
 ```
 
 
@@ -92,11 +92,11 @@ command:
 ```
 
 C->S : [request-header 0][app data]          [app data][]               [request-header 1][app data]          [app data][] ...
-S->C :                   [0x00]    [app data]          [app data...][]                              [app data][]           ...
+S->C :                   [0x00]    [app data]          [0x00][app data...][]                              [0x00][app data][]           ...
 
 ```
 
-注意，表示 `TUNNEL` 成功的 0x00 只需发送一次。子链接以 `[]` 作为分割，可将其视为子链接的半关闭，即不再写入。当双方都半关闭时子链接彻底关闭，当超时无新连接请求到来则主连接关闭。
+注意，表示 `TUNNEL` 成功的 0x00 每个子链接都需要发送。子链接以 `[]` 作为分割，可将其视为子链接的半关闭，即不再写入。当双方都半关闭时子链接彻底关闭，当超时无新连接请求到来则主连接关闭。
 
 ## Obfuscating Algorithm
 
