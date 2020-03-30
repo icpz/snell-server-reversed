@@ -48,7 +48,7 @@ client_id length: length of client_id
 client_id: currently a 36 characters uuid string in official implementation, which I think could be an arbitrary string (correct me)
 ```
 
-* 本 repo 尚未给出 v2.0b 版本的 demo
+* ~~本 repo 尚未给出 v2.0b 版本的 demo~~ [open-snell](https://github.com/icpz/open-snell)
 
 * host 总是字符串格式的，即使是 ip 地址
 
@@ -92,7 +92,7 @@ command:
 ```
 
 C->S : [request-header 0][app data]          [app data][]               [request-header 1][app data]          [app data][] ...
-S->C :                   [0x00]    [app data]          [0x00][app data...][]                              [0x00][app data][]           ...
+S->C :                   [0x00]    [app data]          [app data...][]                              [0x00][app data][]           ...
 
 ```
 
