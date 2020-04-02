@@ -45,7 +45,7 @@ command:
     0x05:   CONNECTv2
 
 client_id length: length of client_id
-client_id: currently a 36 characters uuid string in official implementation, which I think could be an arbitrary string (correct me)
+client_id: arbitrary string including empty string
 ```
 
 * CONNECT 指令则表示这是一个 snell v1 的连接，详见 [v1](README.v1.md)
