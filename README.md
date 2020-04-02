@@ -41,12 +41,14 @@ version:    0x01       /* why not 0x02 ? */
 
 command:
     0x00:   PING
-    0x01:   CONNECT    /* not used */
-    0x05:   CONNECT2
+    0x01:   CONNECT    /* for snell v1 */
+    0x05:   CONNECTv2
 
 client_id length: length of client_id
 client_id: currently a 36 characters uuid string in official implementation, which I think could be an arbitrary string (correct me)
 ```
+
+* CONNECT 指令则表示这是一个 snell v1 的连接，详见 [v1](README.v1.md)
 
 * ~~本 repo 尚未给出 v2.0b 版本的 demo~~ [open-snell](https://github.com/icpz/open-snell)
 
