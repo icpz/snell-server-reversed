@@ -91,27 +91,3 @@ psk = zzz
 
 TLS也就是[simple-obfs](https://github.com/shadowsocks/simple-obfs)的tls mode，验证方式同上
 
-# Build Demo
-
-## macOS
-
-```
-brew update && brew install boost libsodium glog gflags cmake
-
-# clone and cd into the repo
-
-mkdir build && cd build
-cmake .. && make
-```
-
-## debian
-
-```
-apt update && apt install build-essential libboost-dev libsodium-dev libgoogle-glog-dev libgflags-dev cmake
-
-# clone and cd into the repo
-
-mkdir build && cd build
-cmake .. && make
-```
-

@@ -5,3 +5,5 @@ build/
 
 *.sw[po]
 
+.DS_Store
+
