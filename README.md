@@ -28,13 +28,17 @@ crypto_pwhash(__out key, 32, psk, psk_len, salt, 3ULL, 0x2000ULL, crypto_pwhash_
 
 [udp-pkt] := [remote-addr][2-byte port][application data...]
 
-[remote-addr] := [domain-addr] | [ip4-addr] | [ip6-addr]
+[udp-resp] := [ip-addr][2-byte port][application data...]
+
+[remote-addr] := [domain-addr] | [0x00][ip-addr]
 
 [domain-addr] := [1-byte length][variable-length domain]
 
-[ip4-addr] := [0x00][0x04][4-byte ipv4]
+[ip-addr] := [ip4-addr] | [ip6-addr]
 
-[ip6-addr] := [0x00][0x06][16-byte ipv6]
+[ip4-addr] := [0x04][4-byte ipv4]
+
+[ip6-addr] := [0x06][16-byte ipv6]
 ```
 
 其中
@@ -77,7 +81,7 @@ command:
 当 command=0x00 时，表明服务端可以进行 UDP 转发，此时 content 具有如下模式
 
 ```
-[udp-pkt][udp-pkt]....
+[udp-resp][udp-resp]....
 ```
 
 当 command=0x02 时，content 具有如下模式
@@ -91,11 +95,11 @@ command:
 ```
 
 C->S : [udp-req-hdr]   [0x01][udp-pkt]      [0x01][udp-pkt]    [0x01][udp-pkt]                        [0x01][udp-pkt] ...
-S->C :              [0x00]             [udp-pkt]                               [udp-pkt]           [udp-pkt]          ...
+S->C :              [0x00]             [udp-resp]                               [udp-resp]           [udp-resp]          ...
 
 ```
 
-注意，表示 `S->C` 方向中 `[udp-pkt]` 中的目标地址仅支持 `[ip4-addr][port]` 或 `[ip6-addr][port]` 格式，内容为原始 target 的地址。
+注意，表示 `S->C` 方向中 `[udp-resp]` 中的目标地址仅支持 `[ip4-addr][port]` 或 `[ip6-addr][port]` 格式，内容为原始 target 的地址。
 每个 udp packet 长度可由一次 chunk decrypt 的长度计算
 
 ## Obfuscating Algorithm
