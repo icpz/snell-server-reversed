@@ -1,6 +1,8 @@
 # Snell Server
 
-对 snell 协议版本 v3.0 RC 的逆向，旧版本详见 [v2](README.v2.md) [v1](README.v1.md)
+对 snell 协议版本 v3.0 RC 的逆向，旧版本详见 [v2](README.v2.md)， [v1](README.v1.md)
+
+开源实现可参考 [open-snell](https://github.com/icpz/open-snell) 和 [clash](https://github.com/Dreamacro/clash)
 
 # Overview
 
